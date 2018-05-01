@@ -8,6 +8,8 @@ import {trigger, state, animate, transition, style} from '@angular/animations';
 })
 export class LoginComponent implements OnInit {
     constructor() { }
-
+    onFormSubmit(data){
+        console.log(data);
+    }
     ngOnInit(): void { }
 }
