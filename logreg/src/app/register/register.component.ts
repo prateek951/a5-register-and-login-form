@@ -9,8 +9,7 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
     constructor(private router: Router) { }
     onFormSubmit(data){
-        // console.log(data);
-        localStorage.setItem('email',data.email);
+        console.log(data);
         this.router.navigateByUrl('/');
     }
     ngOnInit(): void { }

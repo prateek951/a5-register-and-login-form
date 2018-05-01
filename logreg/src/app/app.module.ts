@@ -6,12 +6,15 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
+import {UserComponent} from './user/user.component';
+import {AuthGuard} from './auth.guard';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
@@ -20,13 +23,13 @@ import { LoginComponent } from './login/login.component';
     RouterModule.forRoot([
       {path: '',redirectTo: '/login',pathMatch: 'full'},
       {path: 'login',component: LoginComponent},
-      {path: 'register',component: RegisterComponent},
-      {path: '*',redirectTo: '/login'}
+      {path: 'register',component: RegisterComponent, canActivate: [AuthGuard]},
+      {path: '**',redirectTo: '/login'}
     ],{
       useHash: true
     })
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

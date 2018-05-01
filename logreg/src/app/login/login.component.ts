@@ -9,7 +9,8 @@ import {Router} from '@angular/router';
 export class LoginComponent implements OnInit {
     constructor(private router:Router) { }
     onFormSubmit(data){
-        //console.log(data);
+        // console.log(data);
+        localStorage.setItem('email',data.email);
         this.router.navigateByUrl('/user');
     }
     ngOnInit(): void { }
