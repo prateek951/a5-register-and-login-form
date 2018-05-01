@@ -6,19 +6,53 @@
                 </h4>
                 <div class="control">
                     <label for="name">Name</label>
-                    <input type="text" placeholder="Name" id="name" required>
+                    <input ngModel #name="ngModel" minlength="3" name="name" type="text" placeholder="Name" id="name" required>
+                    <div class="form-error" *ngIf="name.touched && !name.valid">
+                        <div *ngIf="name.errors.required">
+                            Name is required
+                        </div>
+                        <div *ngIf="name.errors.minlength">
+                            Name must be atleast 3 characters long
+                        </div>
+                    </div>
                 </div>
                 <div class="control">
                     <label for="phone">Phone</label>
-                    <input type="text" placeholder="Phone" id="phone" required>
+                    <input ngModel #phone="ngModel" pattern="[0-9]{10}" name="phone" type="text" placeholder="Phone" id="phone" required>
+                    <div class="form-error" *ngIf="phone.touched && !phone.valid">
+                        <div *ngIf="phone.errors.required">
+                            Phone is required
+                        </div>
+                        <div *ngIf="phone.errors.pattern">
+                            Phone number must be exact 10 digits in length.
+                        </div>
+                    </div>
+                
                 </div>
                 <div class="control">
                     <label for="email">Email</label>
-                    <input type="email" placeholder="Email" id="email" required>
+                    <input ngModel #email="ngModel" email="true" name="email" type="email" placeholder="Email" id="email" required>
+                    <div class="form-error" *ngIf="email.touched && !email.valid">
+                        <div *ngIf="email.errors.required">
+                            Email is required
+                        </div>
+                        <div *ngIf="email.errors.email && !email.errors.required">
+                            Invalid Email address
+                        </div>
+                    </div>
                 </div>
                 <div class="control">
                     <label for="password">Password</label>
-                    <input type="password" autocomplete="new-password" id="password" placeholder="Password" required>
+                    <input ngModel #password="ngModel" minlength="3" name="password"type="password" autocomplete="new-password" id="password" placeholder="Password" required>
+                    <div class="form-error" *ngIf="password.touched && !password.valid">
+                        <div *ngIf="password.errors.required">
+                            Password is required.
+                        </div>
+                        <div *ngIf="password.errors.minlength">
+                            Password must be atleast 3 characters long.
+                        </div>
+                    </div>
+                    
                 </div>  
                 <div class="control">
                     <button class="btn" type="submit">Register</button>

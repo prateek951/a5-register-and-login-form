@@ -6,11 +6,28 @@
                 </h4>
                 <div class="control">
                     <label for="email">Email</label>
-                    <input id="email" type="email" placeholder="Email" required>
+                    <input ngModel #emailField="ngModel" name="email" id="email" email="true" type="email" placeholder="Email" required>
+                    <div class="form-error" *ngIf="emailField.touched && !emailField.valid">
+                        <div *ngIf="emailField.errors.required">
+                            Email is required
+                        </div>
+                        <div *ngIf="emailField.errors.email && !emailField.errors.required">
+                            Invalid Email address
+                        </div>
+                    </div>
                 </div>
                 <div class="control">
                     <label for="password">Password</label>
-                    <input type="password" autocomplete="new-password" id="password" placeholder="Password" required>
+                    <input ngModel #password="ngModel" minlength="4" name="password" type="password" autocomplete="new-password" id="password" placeholder="Password" required>
+                    <div class="form-error" *ngIf="password.touched && !password.valid">
+                        <div *ngIf="password.errors.required">
+                            Password is required
+                        </div>
+                        <div *ngIf="password.errors.minlength">
+                            Password must be atleast 4 characters long
+                        </div>
+                    </div>
+                
                 </div>  
                 <div class="control">
                     <button class="btn" type="submit">Login</button>
