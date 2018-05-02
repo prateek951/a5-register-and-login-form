@@ -30,8 +30,6 @@ import {trigger, transition, style, group, query, animate} from '@angular/animat
 
 export class AppComponent {
   triggerAnimation(outlet){
-    if(outlet.isActivated){
-      return outlet.activatedRoute.component.name;
-    }
+    return outlet.activatedRouteData.animation || null;
   }
 }

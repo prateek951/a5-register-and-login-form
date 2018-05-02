@@ -8,13 +8,14 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import {UserComponent} from './user/user.component';
 import {AuthGuard} from './auth.guard';
-
+import {SocialLinksComponent} from './social-links/social-links.component';
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
     LoginComponent,
-    UserComponent
+    UserComponent,
+    SocialLinksComponent
   ],
   imports: [
     BrowserModule,
@@ -22,8 +23,11 @@ import {AuthGuard} from './auth.guard';
     BrowserAnimationsModule,
     RouterModule.forRoot([
       {path: '',redirectTo: '/login',pathMatch: 'full'},
-      {path: 'login',component: LoginComponent},
-      {path: 'register',component: RegisterComponent, canActivate: [AuthGuard]},
+      {path: 'login',component: LoginComponent,data: {
+        animation: 'login'
+      }},
+      {path: 'register',component: RegisterComponent, data: {animation: 'register'}},
+      {path: 'user',component: UserComponent, canActivate: [AuthGuard]},
       {path: '**',redirectTo: '/login'}
     ],{
       useHash: true
